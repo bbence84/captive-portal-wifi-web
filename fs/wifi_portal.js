@@ -267,9 +267,9 @@ var WiFiPortal = {
     },
     rescan: function () {
 
-        WiFiPortal.Buttons.disableAll('Scanning...');
+        WiFiPortal.Buttons.disableAll('Keresés...');
 
-        WiFiPortal.rpcCall('POST', 'WiFi.PortalScan', 'Scanning for WiFi networks in range of device...', false, function ( resp ) {
+        WiFiPortal.rpcCall('POST', 'WiFi.PortalScan', 'WiFi hálózatok keresése...', false, function ( resp ) {
             
             if (resp && resp.length > 0) {
                 // Clear last scan networks
