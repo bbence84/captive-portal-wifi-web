@@ -186,7 +186,7 @@ var WiFiPortal = {
         check: function(){
 
             WiFiPortal.check( function(resp){
-               var errorMsg = 'Error'; // placeholder
+               var errorMsg = 'Hiba'; // placeholder
 
                if (resp && resp !== true) {
 
@@ -205,7 +205,7 @@ var WiFiPortal = {
                                WiFiPortal.Buttons.enableAll();
                                WiFiPortal.Timers.clear(); // Clear any timers after succesful connection
                            } else {
-                               errorMsg = 'WiFi current status is ' + resp.wifi.status;
+                               errorMsg = 'A WiFi állapota: ' + resp.wifi.status;
                            }
                        }
 
@@ -222,11 +222,11 @@ var WiFiPortal = {
                 // Only reschedule next check timer if test was not a success and test has not timed out yet
                 if ( ! WiFiPortal.Test.success && ! WiFiPortal.Test.timedout ) {
                     WiFiPortal.Error.hide();
-                    WiFiPortal.Info.show(errorMsg + ', check ' + WiFiPortal.Test._checks + ', trying again in ' + WiFiPortal.Test._interval + ' seconds...');
+                    WiFiPortal.Info.show(errorMsg + ', ' + WiFiPortal.Test._checks + '. próbálkozás, újrapróbálkozás ' + WiFiPortal.Test._interval + ' másodperc múlva...');
                     WiFiPortal.Timers.Test.init();
                 }
 
-            }, 'Checking device WiFi status...' );
+            }, 'WiFi ellenőrzés...' );
         }
     },
     save: function(){
