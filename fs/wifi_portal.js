@@ -278,7 +278,7 @@ var WiFiPortal = {
 
                 var netSelect = document.getElementById("networks");
                 netSelect.removeAttribute("disabled"); // Remove disabled (on page load)
-                netSelect.innerHTML = '<option value="-1" disabled="disabled" selected="selected">Please select an SSID...</option>'; // clear any existing ones
+                netSelect.innerHTML = '<option value="-1" disabled="disabled" selected="selected">Válassz hálózatot...</option>'; // clear any existing ones
 
                 resp.forEach(function (net) {
                     // Only add SSID that do not exist already
@@ -308,7 +308,7 @@ var WiFiPortal = {
                     WiFiPortal.Networks.push(net);
                 });
 
-                WiFiPortal.Info.show("Please select from one of the " + WiFiPortal.SSIDs.length + " WiFi networks found.");
+                WiFiPortal.Info.show("Válassz az elérhető " + WiFiPortal.SSIDs.length + " WiFi hálózat közül.");
 
             } else {
                 WiFiPortal.Info.hide();
