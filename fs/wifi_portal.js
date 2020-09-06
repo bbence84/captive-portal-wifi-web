@@ -39,17 +39,17 @@ var WiFiPortal = {
     },
     check: function( callback, infoMessage ){
 
-        WiFiPortal.Buttons.disableAll( 'Please wait, checking...' );
+        WiFiPortal.Buttons.disableAll( 'Ellenőrzés...' );
 
         WiFiPortal.rpcCall('GET', 'Sys.GetInfo', infoMessage ? infoMessage : false, false, function (resp) {
-            var responseVal = 'Error'; // placeholder
+            var responseVal = 'Hiba'; // placeholder
 
             if (resp && resp !== true ) {
                 var jsonResponse = resp.wifi ? resp.wifi : resp;
                 var stringifyJson = JSON.stringify(jsonResponse, undefined, 2);
                 responseVal = WiFiPortal.highlight(stringifyJson);
             } else {
-                responseVal = "Unable to get info from device";
+                responseVal = "Lekérdezési hiba";
             }
 
             document.getElementById("response").innerHTML = responseVal ? responseVal : '';
@@ -169,7 +169,7 @@ var WiFiPortal = {
 
             if( ! WiFiPortal.Test.success ){
                 WiFiPortal.Test.timedout = true;
-                WiFiPortal.Error.show('Test has timed out after ' + WiFiPortal.Test._timeout + ' seconds. Please check the SSID and Password and try again.');
+                WiFiPortal.Error.show('Időtúllépés ' + WiFiPortal.Test._timeout + ' másodperc után. Ellenőrizd a WiFi beállításokat és próbáld újra!');
                 WiFiPortal.Info.hide();
                 // Empty status box
                 var responseDiv = document.getElementById("response");
@@ -201,7 +201,7 @@ var WiFiPortal = {
                            if (resp.wifi.status === 'got ip' && resp.wifi.ssid === WiFiPortal.Test.ssid) {
                                WiFiPortal.Test.success = true;
                                WiFiPortal.Error.hide();
-                               WiFiPortal.Info.show('WiFi connection successful! Connected to ' + resp.wifi.ssid);
+                               WiFiPortal.Info.show('Kapcsolódás sikeres a(z) ' + resp.wifi.ssid + ' hálózathoz!');
                                WiFiPortal.Buttons.enableAll();
                                WiFiPortal.Timers.clear(); // Clear any timers after succesful connection
                            } else {
@@ -210,12 +210,12 @@ var WiFiPortal = {
                        }
 
                    } else {
-                       errorMsg = 'Received response, error getting WiFi status';
+                       errorMsg = 'WiFi állapot lekérdezése nem sikerült';
                    }
 
                } else {
                     WiFiPortal.Info.hide();
-                    WiFiPortal.Error.show('Error getting WiFi status, trying again in 5 seconds...');
+                    WiFiPortal.Error.show('WiFi állapot lekérdezése nem sikerült, újrapróbálkozás 5 másodperc múlva');
                }
 
                 WiFiPortal.Test._checks++;
@@ -236,11 +236,11 @@ var WiFiPortal = {
 
         if( ! ssid || ssid.length < 1 ){
             WiFiPortal.Info.hide();
-            WiFiPortal.Error.show( 'You must select an SSID from the dropdown!' );
+            WiFiPortal.Error.show( 'Válassz hálózatot a listából!' );
             return;
         }
 
-        WiFiPortal.Buttons.disableAll('Please wait, sending...');
+        WiFiPortal.Buttons.disableAll('Kérlek várj...');
 
         WiFiPortal.Test.ssid = ssid; // Set SSID value in test so we can verify connection is to that exact SSID
 
@@ -312,7 +312,7 @@ var WiFiPortal = {
 
             } else {
                 WiFiPortal.Info.hide();
-                WiFiPortal.Error.show('No networks found, try again...');
+                WiFiPortal.Error.show('Nem található hálózat, próbáld újra...');
             }
 
             WiFiPortal.Buttons.enableAll();
