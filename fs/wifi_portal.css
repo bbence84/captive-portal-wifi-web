@@ -7,9 +7,9 @@ body {
   height: 120px;
   width: 100%;
   border-bottom: 1px solid rgba(34, 36, 38, 0.15);
-  padding: 0px 0px 3px;
+  padding: 4px;
   background-image:  url("cropped-bunnyguard.png");
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: auto;
 }
