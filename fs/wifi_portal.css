@@ -4,15 +4,13 @@ body {
 
 #header {
   box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.87);
-  height: auto;
-  font-size: 2em;
-  text-align: center;
+  height: 30px;
   width: 100%;
   border-bottom: 1px solid rgba(34, 36, 38, 0.15);
   padding: 0px 0px 3px;
   background-image:  url("cropped-bunnyguard.png");
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 .message {
